@@ -1,4 +1,5 @@
 require 'json'
+require 'yaml'
 require 'pathname'
 
 class FileInstance
@@ -30,7 +31,13 @@ class FileInstance
     end
 
     def to_hash
-       json_hash = JSON.parse(self.to_s)
+        if File.extname(@file_path) == '.json'
+            json_hash = JSON.parse(self.to_s)
+        elsif ['.yaml', '.yml'].include? File.extname(@file_path)
+            yaml_hash = YAML.load(@file_path.to_s)
+        else
+            abort(@file_path + 'must be a JSON or YAML file')
+        end
     end
 
     def _symbolize(obj)

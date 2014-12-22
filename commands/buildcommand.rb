@@ -7,7 +7,9 @@ class BuildCommand
         
     def build
         template_builder = Template.new(@template.to_s, @email.to_hash)
-        save template_builder.compile
+        final_email = template_builder.compile
+        # Run the plugins
+        save final_email
     end
 
 
