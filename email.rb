@@ -1,3 +1,5 @@
-require './classes/fileinstance.rb'
-require './classes/template.rb'
-require './commands/buildcommand.rb'
+module Email
+    require_relative 'classes/fileinstance'
+    require_relative 'classes/template'
+    require_relative 'commands/buildcommand'
+end

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'mercenary'
-require './email'
+require_relative 'email'
 
 Mercenary.program(:email) do |p|
     p.version '0.1'
@@ -17,7 +17,7 @@ Mercenary.program(:email) do |p|
                 abort('Please enter both a ')
             end
             
-            BuildCommand.new(args[0], args[1]).build
+            Email::BuildCommand.new(args[0], args[1]).build
         end
     end
 
