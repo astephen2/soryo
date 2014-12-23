@@ -12,12 +12,13 @@ Mercenary.program(:email) do |p|
         c.syntax "build <template> <email json> [options]"
         c.description "Build an email using a template"
         
-        c.action do |args, _|
+        c.action do |args, options|
             if args.length != 2
-                abort('Please enter both a ')
+                abort('Please enter both a template and email')
             end
+            command = Email::BuildCommand.new(args[0], args[1])
+            command.build
             
-            Email::BuildCommand.new(args[0], args[1]).build
         end
     end
 
@@ -25,7 +26,7 @@ Mercenary.program(:email) do |p|
         c.syntax "test email"
         c.description "Test an email using a browser"
 
-        c.action do |args, _|
+        c.action do |args, options|
 
         end
     end

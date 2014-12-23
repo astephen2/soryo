@@ -1,7 +1,8 @@
 module Email
-    class BuildCommand
+    class BuildCommand < Email::Command
         
         def initialize(template, email)
+            super()
             @template = Email::FileInstance.new template
             @email = Email::FileInstance.new email
         end
