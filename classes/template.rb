@@ -10,7 +10,13 @@ module Email
 
         def compile
             compiled_template = Liquid::Template.parse(@template)
-            compiled_template.render(@hash)
+            email = compiled_template.render(@hash)
+
+            # Run plugins
+            Email::Plugin.descendants.each do |c|
+                c.new.run(email)
+            end
+            email
         end
     end
 end

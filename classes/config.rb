@@ -34,10 +34,12 @@ module Email
 
         # Takes in settings file path, merges yaml with settings
         def read_yaml(settings)
-            file = File.open(settings, 'r')
-            configfile = YAML.load(file.read)
-            initialize_config(configfile)
-            file.close
+            if Pathname.exists(settings)
+                file = File.open(settings, 'r')
+                configfile = YAML.load(file.read)
+                initialize_config(configfile)
+                file.close
+            end
         end
 
     end
