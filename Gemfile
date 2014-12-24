@@ -1,2 +1,4 @@
+source 'https://rubygems.org'
 gem 'mercenary'
-gem 'tilt'
+gem 'premailer'
+gem 'liquid'

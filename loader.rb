@@ -11,6 +11,6 @@ Mercenary.program(:email) do |p|
     [Email::BuildCommand].each do |c|
         c.add_command(p)
     end
-end
 
+end
 

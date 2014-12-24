@@ -34,6 +34,8 @@ module Email
                     command = Email::BuildCommand.new(args[0], args[1], options)
                     command.build
                 end
+
+                self.add_options(c)
             end
         end
 
