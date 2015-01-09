@@ -1,15 +1,13 @@
 require 'yaml'
 
 module Email
-    class Config < Hash
-        def initialize
-            config = {
+    DEFAULTS = {
                 # Output
                 'output_location' => Dir.pwd,
                 'output_name' => nil,
 
                 # Testing
-                'test_type' => 'browser',
+                'test_type' => 'preview',
                 'test_apikey' => nil,
                 'test_username' => nil,
                 'test_password' => nil,
@@ -22,23 +20,27 @@ module Email
                 'mail_fromaddress' => nil,
                 'mail_subject' => nil
             }
+
+    class Config < Hash
+        def initialize
             super()
-            initialize_config(config)
+            merge_with(DEFAULTS)
         end
 
-        def initialize_config(config)
-            config.each do |k,v|
+        def merge_with(config)
+            new_self = self.merge(config)
+            new_self.each do |k,v|
                 self[k] = v
             end
         end
 
         # Takes in settings file path, merges yaml with settings
         def read_yaml(settings)
-            if Pathname.exists(settings)
-                file = File.open(settings, 'r')
-                configfile = YAML.load(file.read)
-                initialize_config(configfile)
-                file.close
+            settings_instance = Email::FileInstance.new(settings)
+            if settings_instance.existance?
+                self.merge_with(settings_instance.to_hash)
+            else
+                raise 'NoFileFound'
             end
         end
 

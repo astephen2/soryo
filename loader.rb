@@ -8,7 +8,7 @@ Mercenary.program(:email) do |p|
     p.description 'This will be a program to generate emails Jekyll style'
     p.syntax "email <subcommand> [options]"
 
-    [Email::BuildCommand].each do |c|
+    Email::Command.descendants.each do |c|
         c.add_command(p)
     end
 
