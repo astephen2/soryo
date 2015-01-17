@@ -1,7 +1,7 @@
 require 'premailer'
 
-module Email
-    class PremailerPlugin < Email::Plugin
+module Soryo
+    class PremailerPlugin < Soryo::Plugin
 
         def run(email)
             Premailer.new(email, :with_html_string => true)

@@ -1,5 +1,5 @@
 require 'liquid'
-module Email
+module Soryo
     class Template
         attr_reader :template, :hash
 
@@ -15,7 +15,7 @@ module Email
         end
 
         def run_plugins(email)
-            Email::Plugin.descendants.each do |c|
+            Soryo::Plugin.descendants.each do |c|
                 c.new.run(email)
             end
             email

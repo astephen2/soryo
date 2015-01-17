@@ -2,7 +2,7 @@ require 'json'
 require 'yaml'
 require 'pathname'
 
-module Email
+module Soryo
     class FileInstance
         
         attr_reader :file_path

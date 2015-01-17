@@ -1,16 +1,16 @@
 require 'mercenary' 
-module Email
-    class SendCommand < Email::Command
+module Soryo
+    class SendCommand < Soryo::Command
         
         def initialize(template, email, options, instructions)
             super(options)
-            @template = Email::FileInstance.new template
-            @email = Email::FileInstance.new email
-            @instructions = Email::FileInstance.new instructions
+            @template = Soryo::FileInstance.new template
+            @email = Soryo::FileInstance.new email
+            @instructions = Soryo::FileInstance.new instructions
         end
             
         def build
-            template_builder = Email::Template.new(@template.to_s, @email.to_hash)
+            template_builder = Soryo::Template.new(@template.to_s, @email.to_hash)
             final_email = template_builder.compile
             # Run the plugins
             send final_email
@@ -18,7 +18,7 @@ module Email
 
 
         def send(email)
-            Email::Sender.descendants.each do |c|
+            Soryo::Sender.descendants.each do |c|
                 if c.sender_name == @config["send_type"]
                     sender = c.new
                     sender.run(email, @config)
@@ -37,7 +37,7 @@ module Email
                     if args.length != 3
                         abort('Please enter a template, email, and instructions')
                     end
-                    command = Email::SendCommand.new(args[0], args[1], options, args[2])
+                    command = Soryo::SendCommand.new(args[0], args[1], options, args[2])
                     command.build
                 end
 

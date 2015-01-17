@@ -1,4 +1,4 @@
-module Email
+module Soryo
     class Plugin
 
         # Used for finding all necessary plugins

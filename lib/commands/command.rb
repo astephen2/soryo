@@ -1,7 +1,7 @@
 require 'yaml'
 require 'pathname'
 
-module Email
+module Soryo
     class Command
 
         attr_reader :config
@@ -15,7 +15,7 @@ module Email
         end
 
         def initialize(options)
-            @config = Email::Config.new
+            @config = Soryo::Config.new
             unless options.nil?
                 @config.merge_with(options)
             end

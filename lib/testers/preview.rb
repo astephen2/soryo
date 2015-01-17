@@ -2,8 +2,8 @@ require 'mail'
 require 'tempfile'
 require 'launchy'
 
-module Email
-    class BrowserTester < Email::Tester
+module Soryo
+    class BrowserTester < Soryo::Tester
         
         attr_reader :preview_obj
         def run(email, options)

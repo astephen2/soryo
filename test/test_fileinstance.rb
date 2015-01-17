@@ -1,18 +1,18 @@
-require_relative '../classes/fileinstance'
+require_relative '../lib/soryo.rb'
 require 'pathname'
 
-describe Email::FileInstance do
+describe Soryo::FileInstance do
     before :each do
         @json_filepath = 'files/json.json'
         @yaml_filepath = 'files/yaml.yaml'
-        @json_sample = Email::FileInstance.new('files/json.json')
-        @yaml_sample = Email::FileInstance.new('files/yaml.yaml')
-        @invalid_file = Email::FileInstance.new('files/test.invalid')
+        @json_sample = Soryo::FileInstance.new('files/json.json')
+        @yaml_sample = Soryo::FileInstance.new('files/yaml.yaml')
+        @invalid_file = Soryo::FileInstance.new('files/test.invalid')
     end
 
     describe '#new' do
         it "should return a FileInstance object" do
-            expect(@json_sample).to be_an_instance_of Email::FileInstance
+            expect(@json_sample).to be_an_instance_of Soryo::FileInstance
         end 
 
         it "should have a file_path from initializer" do
@@ -68,7 +68,7 @@ describe Email::FileInstance do
         end
 
         it "should throw error if file is not yaml or JSON" do
-            badinstance = Email::FileInstance.new('files/file.file')
+            badinstance = Soryo::FileInstance.new('files/file.file')
             expect{badinstance.to_hash}.to raise_error('Must be a JSON or YAML file')
         end
     end

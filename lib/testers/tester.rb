@@ -1,4 +1,4 @@
-module Email
+module Soryo
     class Tester 
 
         def self.descendants

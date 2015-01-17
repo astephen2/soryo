@@ -1,15 +1,15 @@
 require 'mercenary' 
-module Email
-    class BuildCommand < Email::Command
+module Soryo
+    class BuildCommand < Soryo::Command
         
         def initialize(template, email, options)
             super(options)
-            @template = Email::FileInstance.new template
-            @email = Email::FileInstance.new email
+            @template = Soryo::FileInstance.new template
+            @email = Soryo::FileInstance.new email
         end
             
         def build
-            template_builder = Email::Template.new(@template.to_s, @email.to_hash)
+            template_builder = Soryo::Template.new(@template.to_s, @email.to_hash)
             final_email = template_builder.compile
             # Run the plugins
             save final_email
@@ -18,7 +18,7 @@ module Email
 
         def save(email)
             filename = @email.shortname + '.html'
-            final_email = Email::FileInstance.new(filename)
+            final_email = Soryo::FileInstance.new(filename)
             final_email.write(email)
         end
         
@@ -31,7 +31,7 @@ module Email
                     if args.length != 2
                         abort('Please enter both a template and email')
                     end
-                    command = Email::BuildCommand.new(args[0], args[1], options)
+                    command = Soryo::BuildCommand.new(args[0], args[1], options)
                     command.build
                 end
 

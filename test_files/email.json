@@ -1,0 +1,15 @@
+{
+    "general_text": "This is a test message",
+    "events": [
+        {
+            "name": "test event 1",
+            "desc": "This is a description of an event that is happening",
+            "img": "http://placehold.it/130x130"
+        },
+        {
+            "name": "test event 2",
+            "desc": "This is a different event that is happening",
+            "img": "http://placehold.it/130x130"        
+        }
+    ]
+}

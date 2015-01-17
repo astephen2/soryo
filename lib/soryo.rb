@@ -1,4 +1,4 @@
-module Email
+module Soryo
     require_relative 'classes/fileinstance'
     require_relative 'classes/template'
     require_relative 'classes/config'

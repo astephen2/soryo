@@ -1,6 +1,6 @@
 require 'yaml'
 
-module Email
+module Soryo
     DEFAULTS = {
                 # Output
                 'output_location' => Dir.pwd,
@@ -36,7 +36,7 @@ module Email
 
         # Takes in settings file path, merges yaml with settings
         def read_yaml(settings)
-            settings_instance = Email::FileInstance.new(settings)
+            settings_instance = Soryo::FileInstance.new(settings)
             if settings_instance.existance?
                 self.merge_with(settings_instance.to_hash)
             else

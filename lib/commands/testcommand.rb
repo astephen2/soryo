@@ -1,15 +1,15 @@
 require 'mercenary' 
-module Email
-    class TestCommand < Email::Command
+module Soryo
+    class TestCommand < Soryo::Command
         
         def initialize(template, email, options)
             super(options)
-            @template = Email::FileInstance.new template
-            @email = Email::FileInstance.new email
+            @template = Soryo::FileInstance.new template
+            @email = Soryo::FileInstance.new email
         end
             
         def build
-            template_builder = Email::Template.new(@template.to_s, @email.to_hash)
+            template_builder = Soryo::Template.new(@template.to_s, @email.to_hash)
             final_email = template_builder.compile
             # Run the plugins
             test final_email
@@ -17,7 +17,7 @@ module Email
 
 
         def test(email)
-            Email::Tester.descendants.each do |c|
+            Soryo::Tester.descendants.each do |c|
                 if c.tester_name == @config["test_type"]
                     tester = c.new
                     tester.run(email, @config)
@@ -36,7 +36,7 @@ module Email
                     if args.length != 2
                         abort('Please enter both a template and email')
                     end
-                    command = Email::TestCommand.new(args[0], args[1], options)
+                    command = Soryo::TestCommand.new(args[0], args[1], options)
                     command.build
                 end
 

@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 
 require 'mercenary'
-require_relative 'email'
+require_relative 'lib/soryo'
 
-Mercenary.program(:email) do |p|
+Mercenary.program(:soryo) do |p|
     p.version '0.1'
     p.description 'This will be a program to generate emails Jekyll style'
-    p.syntax "email <subcommand> [options]"
+    p.syntax "soryo <subcommand> [options]"
 
-    Email::Command.descendants.each do |c|
+    Soryo::Command.descendants.each do |c|
         c.add_command(p)
     end
 
