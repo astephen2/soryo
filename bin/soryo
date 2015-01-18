@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
+$:.unshift File.join(File.dirname(__FILE__), *%w{ .. lib })
+
 require 'mercenary'
-require_relative 'lib/soryo'
+require 'soryo'
 
 Mercenary.program(:soryo) do |p|
     p.version '0.1'

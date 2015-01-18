@@ -6,7 +6,7 @@ describe Soryo::Config do
     before :each do 
         @config = Soryo::Config.new
         @invalid_filepath = 'files/invalid.file'
-        @yaml_filepath = 'files/yaml.yaml'
+        @yaml_filepath = File.join(File.expand_path(File.dirname(__FILE__)), 'files/yaml.yaml')
     end
 
     describe '#new' do

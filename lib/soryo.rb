@@ -1,18 +1,18 @@
 module Soryo
-    require_relative 'classes/fileinstance'
-    require_relative 'classes/template'
-    require_relative 'classes/config'
+    require 'classes/fileinstance'
+    require 'classes/template'
+    require 'classes/config'
 
     # Commands
-    require_relative 'commands/command'
-    require_relative 'commands/buildcommand'
-    require_relative 'commands/testcommand'
+    require 'commands/command'
+    require 'commands/buildcommand'
+    require 'commands/testcommand'
 
     # Plugins
-    require_relative 'classes/plugin'
-    require_relative 'plugins/premailer'
+    require 'classes/plugin'
+    require 'plugins/premailer'
 
     # Testers
-    require_relative 'testers/tester'
-    require_relative 'testers/preview'
+    require 'testers/tester'
+    require 'testers/preview'
 end

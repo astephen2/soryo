@@ -3,11 +3,16 @@ require 'pathname'
 
 describe Soryo::FileInstance do
     before :each do
-        @json_filepath = 'files/json.json'
-        @yaml_filepath = 'files/yaml.yaml'
-        @json_sample = Soryo::FileInstance.new('files/json.json')
-        @yaml_sample = Soryo::FileInstance.new('files/yaml.yaml')
-        @invalid_file = Soryo::FileInstance.new('files/test.invalid')
+        @json_filepath = File.join(File.expand_path(File.dirname(__FILE__)), 'files/json.json')
+        @yaml_filepath = File.join(File.expand_path(File.dirname(__FILE__)), 'files/yaml.yaml')
+        @invalid_filepath = File.join(File.expand_path(File.dirname(__FILE__)), 'files/invalid.bad')
+        @nonjson_filepath = File.join(File.expand_path(File.dirname(__FILE__)), 'files/file.file')
+
+        @json_sample = Soryo::FileInstance.new(@json_filepath)
+        @yaml_sample = Soryo::FileInstance.new(@yaml_filepath)
+        @invalid_file = Soryo::FileInstance.new(@invalid_filepath)
+        @nonjson_file = Soryo::FileInstance.new(@nonjson_filepath)
+        
     end
 
     describe '#new' do
@@ -68,8 +73,7 @@ describe Soryo::FileInstance do
         end
 
         it "should throw error if file is not yaml or JSON" do
-            badinstance = Soryo::FileInstance.new('files/file.file')
-            expect{badinstance.to_hash}.to raise_error('Must be a JSON or YAML file')
+            expect{@nonjson_file.to_hash}.to raise_error('Must be a JSON or YAML file')
         end
     end
 
